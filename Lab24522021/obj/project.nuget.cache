@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7ySe33tM+H+wSq4bPwgWcA/W0zuPCTGLRM3WStJzA3dg7mY/ZXg/nrw69ECghMndoUfNeCXYFSF/XGapwNnPEA==",
+  "dgSpecHash": "EDK8ixV06MEU3T6bfIk9EB5m2JMKO9xCPbfS7A95oOGDWxDZARtW1Rrc6nVMqJ4lUbKxBNrJiLuKajYqd7kmIQ==",
   "success": true,
   "projectFilePath": "D:\\ANA\\FACULTATE\\Licenta\\Licenta\\Lab24522021\\Licenta.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ana Dima\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\Ana Dima\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Ana Dima\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\Ana Dima\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
