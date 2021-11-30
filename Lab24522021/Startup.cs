@@ -1,4 +1,6 @@
 using Licenta.Data;
+using Licenta.Repositories.DatabaseRepository;
+using Licenta.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,7 +36,13 @@ namespace Licenta
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Licenta", Version = "v1" });
             });
+            
+            services.AddTransient<IIngredienteRepository, IngredienteRepository>();
+            services.AddTransient<IDemoService, DemoService>();
 
+            //cand folosim Transient se creaza de fiecare data cate o instanta noua 
+            //mai putem folosi si AddSingleton -- creaza osingura instanta care este folosita peste tot 
+            //sau AddScoped --in cadrul unui request se creaza o singura instanta pentru toate injectarile 
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddSpaStaticFiles(Configuration =>
             //{
