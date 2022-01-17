@@ -1,4 +1,5 @@
-﻿  using Licenta.Models;
+﻿using Laborator54522021.Models;
+using Licenta.Models;
 using Licenta.Models.Relations.Many_to_Many;
 using Licenta.Models.Relations.One_to_Many;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace Licenta.Data
         public DbSet<Unitati> Unitate { get; set; }
 
         public DbSet<RetetaIngrediente> RetetaIngredient { get; set; }
-
+        public DbSet<User> Users { get; set; }
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
