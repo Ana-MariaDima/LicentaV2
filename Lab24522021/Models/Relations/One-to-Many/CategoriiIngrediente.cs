@@ -14,6 +14,7 @@ namespace Licenta.Models.Relations.One_to_Many
    
 
         public ICollection<Ingrediente> Ingrediente { get; set; }
+
       
     }
 }

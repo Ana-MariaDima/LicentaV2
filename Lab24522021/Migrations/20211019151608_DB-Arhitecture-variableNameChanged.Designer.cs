@@ -52,7 +52,7 @@ namespace Licenta.Migrations
                     b.Property<Guid?>("CategorieIngredientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Categorie_ingredient")
+                    b.Property<int>("IdCategorieIngredient")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DateCreated")
@@ -115,7 +115,7 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descriere_categorie_ingredient")
+                    b.Property<string>("Descriere_IdCategorieIngredient")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume_categoriie_ingredient")
