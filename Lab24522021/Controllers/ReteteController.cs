@@ -1,4 +1,4 @@
-﻿using Licenta.Models.Relations.Many_to_Many;
+﻿using Licenta.Models.Relations.One_to_Many;
 using Licenta.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,54 +11,54 @@ namespace Licenta.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IngredienteController : ControllerBase
+    public class ReteteController : ControllerBase
     {
 
         private readonly IDemoService _demoService;
 
-        public IngredienteController(IDemoService demoService)
+        public ReteteController(IDemoService demoService)
         {
 
             _demoService = demoService;
         }
-      
+
         //get 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _demoService.GetIngredienteRepository().GetAll();
+            var result = await _demoService.GetReteteRepository().GetAll();
             return Ok(result);
-    
+
 
         }
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _demoService.GetIngredienteRepository().FindByIdAsync(id);
+            var result = await _demoService.GetReteteRepository().FindByIdAsync(id);
             return Ok(result);
-         
+
 
         }
         //post =create 
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(Ingrediente Ing)
+        public async Task<IActionResult> Add(Retete Ret)
         {
-            Ing.Id = Guid.NewGuid();
-            var repo = _demoService.GetIngredienteRepository();
-            await repo.CreateAsync(Ing);
+            Ret.Id = Guid.NewGuid();
+            var repo = _demoService.GetReteteRepository();
+            await repo.CreateAsync(Ret);
             await repo.SaveAsync();
             return Ok();
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update(Ingrediente Ing)
+        public async Task<IActionResult> Update(Retete Ret)
         {
 
-            var repo = _demoService.GetIngredienteRepository();
+            var repo = _demoService.GetReteteRepository();
             // var result = await repo.FindByIdAsync(CatIng.Id);
-            repo.Update(Ing);
+            repo.Update(Ret);
             await repo.SaveAsync();
             return Ok();
         }
@@ -66,7 +66,7 @@ namespace Licenta.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
 
-            var repo = _demoService.GetIngredienteRepository();
+            var repo = _demoService.GetReteteRepository();
             var result = await repo.FindByIdAsync(id);
             if (result == null)
                 return Ok();

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licenta.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220124153933_SomeModif21")]
-    partial class SomeModif21
+    [Migration("20220124210816_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,9 +92,6 @@ namespace Licenta.Migrations
                     b.Property<Guid?>("CategorieIngredientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Categorie_ingredient")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
@@ -107,11 +104,15 @@ namespace Licenta.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nume_ingredient")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategorieIngredientId");
+
+                    b.HasIndex("Nume_ingredient")
+                        .IsUnique()
+                        .HasFilter("[Nume_ingredient] IS NOT NULL");
 
                     b.ToTable("Ingredient");
                 });
@@ -134,9 +135,13 @@ namespace Licenta.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume_categoriie_ingredient")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nume_categoriie_ingredient")
+                        .IsUnique()
+                        .HasFilter("[Nume_categoriie_ingredient] IS NOT NULL");
 
                     b.ToTable("CategorieIngredient");
                 });
@@ -156,9 +161,13 @@ namespace Licenta.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nume_Categorie_Retete")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nume_Categorie_Retete")
+                        .IsUnique()
+                        .HasFilter("[Nume_Categorie_Retete] IS NOT NULL");
 
                     b.ToTable("CategorieReteta");
                 });
@@ -231,7 +240,7 @@ namespace Licenta.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume_reteta")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Poza_reteta")
                         .HasColumnType("nvarchar(max)");
@@ -252,6 +261,10 @@ namespace Licenta.Migrations
 
                     b.HasIndex("CategorieRetetaId");
 
+                    b.HasIndex("Nume_reteta")
+                        .IsUnique()
+                        .HasFilter("[Nume_reteta] IS NOT NULL");
+
                     b.ToTable("Reteta");
                 });
 
@@ -270,9 +283,13 @@ namespace Licenta.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nume_unitate")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nume_unitate")
+                        .IsUnique()
+                        .HasFilter("[Nume_unitate] IS NOT NULL");
 
                     b.ToTable("Unitate");
                 });

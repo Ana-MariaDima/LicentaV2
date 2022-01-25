@@ -21,8 +21,8 @@ namespace Licenta.Utilities.Seeders
             {
                 var ingredient = new Ingrediente
                 {
-                    Nume_ingredient = "Vin rosu",
-                    Categorie_ingredient = 1
+                   /* Nume_ingredient = "Vin rosu",
+                    Categorie_ingredient = 1*/
 
                 };
                 _context.Add(ingredient);

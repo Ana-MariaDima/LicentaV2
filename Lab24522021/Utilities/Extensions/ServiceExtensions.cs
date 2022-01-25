@@ -1,6 +1,8 @@
 ﻿using Licenta.Repositories.CategoriiIngredienteRepository;
 using Licenta.Repositories.CategoriiReteteRepository;
 using Licenta.Repositories.DatabaseRepository;
+using Licenta.Repositories.RetetegRepository;
+using Licenta.Repositories.ReteteRepository;
 using Licenta.Repositories.UnitatiRepository;
 using Licenta.Services;
 using Licenta.Utilities.Seeders;
@@ -23,6 +25,10 @@ namespace Licenta.Utilities.Extensions
             services.AddTransient<ICategoriiIngredienteRepository, CategoriiIngredienteRepository>();
             services.AddTransient<ICategoriiReteteRepository, CategoriiReteteRepository>();
             services.AddTransient<IUnitatiRepository, UnitatiRepository>();
+            services.AddTransient<IReteteIngredienteRepository, ReteteIngredienteRepository>();
+            services.AddTransient<IReteteRepository, ReteteRepository>();
+
+
 
             return services;
         }

@@ -90,9 +90,6 @@ namespace Licenta.Migrations
                     b.Property<Guid?>("CategorieIngredientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Categorie_ingredient")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
