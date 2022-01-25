@@ -130,3 +130,10 @@ D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.dll
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\ref\Licenta.dll
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.pdb
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.genruntimeconfig.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\AutoMapper.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

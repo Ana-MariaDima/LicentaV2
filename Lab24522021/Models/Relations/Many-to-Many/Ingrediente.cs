@@ -10,7 +10,7 @@ namespace Licenta.Models.Relations.Many_to_Many
     public class Ingrediente: BaseEntity
     {
         public string Nume_ingredient { set; get; }
-        public int Categorie_ingredient { set; get; }
+       // public int Categorie_ingredient { set; get; }
         public CategoriiIngrediente CategorieIngredient { get; set; }
         public Guid IdCategorieIngredient  { get; set; }
 
