@@ -20,7 +20,7 @@ namespace Licenta.Models.Base
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime? DateCreated { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? DateModified { get; set; }
     }
 }

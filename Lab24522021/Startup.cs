@@ -1,4 +1,10 @@
 using Licenta.Data;
+using Licenta.Repositories.DatabaseRepository;
+using Licenta.Services;
+using Licenta.Services.AuthService;
+using Licenta.Utilities;
+using Licenta.Utilities.Extensions;
+using Licenta.Utilities.JWTutils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +24,7 @@ namespace Licenta
 {
     public class Startup
     {
+        public string CorsAllowSpecificOrigin = "FrontedAllowOrigin";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,15 +42,39 @@ namespace Licenta
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Licenta", Version = "v1" });
             });
 
+            //services.AddTransient<IIngredienteRepository, IngredienteRepository>();
+            // services.AddTransient<IDemoService, DemoService>();
+            services.AddRepositories(); //aici voi adauga toate repo-urile
+            services.AddServices();//aici toate serviciile
+            //cand folosim Transient se creaza de fiecare data cate o instanta noua 
+            //mai putem folosi si AddSingleton -- creaza osingura instanta care este folosita peste tot 
+            //sau AddScoped --in cadrul unui request se creaza o singura instanta pentru toate injectarile 
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddSpaStaticFiles(Configuration =>
             //{
             //    Configuration.RootPath = "ClientApp/dist";
             //});
+            services.AddCors(option =>
+            {
+                option.AddPolicy(name: CorsAllowSpecificOrigin,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:4200", "https://localhost:4201") //for dev and prod  (for example)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                    });
+            });
+            //Auto Mapper
+            services.AddAutoMapper(typeof(Startup));
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddScoped<IJWTUtils, JWTUtils>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)// aici pot adauga seederele )
         {
             if (env.IsDevelopment())
             {
@@ -52,9 +83,13 @@ namespace Licenta
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Licenta v1"));
             }
 
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //app.UseMiddleware<JWTMiddleware>();
 
             app.UseAuthorization();
 

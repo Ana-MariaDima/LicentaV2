@@ -21,9 +21,6 @@ namespace Licenta.Models.Relations.One_to_Many
 
 
 
-        public Bucatari Bucatar { get; set; }
-        public Guid IdBucatar  { get; set; }
-
         public CategoriiRetete CategorieReteta { get; set; }
         public Guid IdCategorieReteta { get; set; }
 
