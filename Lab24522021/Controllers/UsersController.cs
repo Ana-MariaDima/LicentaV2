@@ -37,7 +37,7 @@ namespace Licenta.Controllers
             return Ok(response);
         }
 
-        //create -http poste 
+        //create -http post
         [AllowAnonymous]
         [HttpPost("create")]
         public IActionResult Create (UserRequestDTO user)
@@ -59,6 +59,18 @@ namespace Licenta.Controllers
             var user = _userService.GetAllUsers();
             return Ok(user);
         }
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+
+            var user = _userService.GetById(id);
+            var result =  _userService.Delete(user.Id);// nu merge delete 
+
+           
+            
+            return Ok();
+        }
+
     }
 
 }

@@ -70,5 +70,13 @@ namespace Licenta.Services.AuthService
         {
             return context.Users.Where(x =>x.Id==id).FirstOrDefault();
         }
+
+        public bool Delete(Guid id)
+        {
+            var user= context.Users.Where(x => x.Id == id).FirstOrDefault();
+            var user2 = context.Users.Remove(user);
+            return true;
+        }
+
     }
 }

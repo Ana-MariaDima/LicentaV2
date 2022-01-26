@@ -17,5 +17,7 @@ namespace Licenta.Services.AuthService
         //GetById
         User GetById(Guid id);
         string Create(UserRequestDTO model);
+
+        bool Delete(Guid id);
     }
 }
