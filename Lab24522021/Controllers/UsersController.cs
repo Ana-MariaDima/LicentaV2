@@ -42,17 +42,10 @@ namespace Licenta.Controllers
         [HttpPost("create")]
         public IActionResult Create (UserRequestDTO user)
         {
-            var UserToCreate = new User
-            {
-                FirstName = user.FirstName,
-                LastName = user.LasttName,
-                Username = user.Username,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                Role = Role.User
-            };
-           //User.AddIdentity(UserToCreate.);
-
-            return Ok();
+           
+            //User.AddIdentity(UserToCreate.);
+            var result=_userService.Create(user);
+            return Ok(result);
         }
 
 
@@ -64,7 +57,7 @@ namespace Licenta.Controllers
         public IActionResult GetAllUsers()
         {
             var user = _userService.GetAllUsers();
-            return Ok(User);
+            return Ok(user);
         }
     }
 
