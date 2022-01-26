@@ -24,7 +24,7 @@ namespace Licenta
 {
     public class Startup
     {
-        public string CorsAllowSpecificOrigin = "FrontedAllowOrigin";
+        public string CorsAllowSpecificOrigin = "http://localhost:4200/";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -54,16 +54,25 @@ namespace Licenta
             //{
             //    Configuration.RootPath = "ClientApp/dist";
             //});
-            services.AddCors(option =>
+            /* services.AddCors(option =>
+             {
+                 option.AddPolicy(name: CorsAllowSpecificOrigin,
+                     builder =>
+                     {
+                         builder.WithOrigins("https://localhost:4200", "https://localhost:4201") //for dev and prod  (for example)
+                         .AllowAnyHeader()
+                         .AllowAnyMethod()
+                         .AllowCredentials();
+                     });
+             });*/
+            services.AddCors(options =>
             {
-                option.AddPolicy(name: CorsAllowSpecificOrigin,
-                    builder =>
-                    {
-                        builder.WithOrigins("https://localhost:4200", "https://localhost:4201") //for dev and prod  (for example)
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                    });
+                options.AddPolicy("AllowAll", p =>
+                {
+                    p.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
             });
             //Auto Mapper
             services.AddAutoMapper(typeof(Startup));
@@ -84,17 +93,22 @@ namespace Licenta
             }
 
 
-
+          //  app.UseCors(CorsAllowSpecificOrigin);
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            //app.UseMiddleware<JWTMiddleware>();
+           // app.UseMiddleware<JWTMiddleware>();
 
             app.UseAuthorization();
 
             //for frontend
             //app.UseStaticFiles();
+
+
+
+            app.UseCors(
+              options => options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

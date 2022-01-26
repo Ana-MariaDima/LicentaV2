@@ -11,9 +11,11 @@ namespace Licenta.Services.AuthService
     {
         //Auth
         UserResponseDTO Authentificate(UserRequestDTO model);
+
         //GetAll
         IEnumerable<User> GetAllUsers();
         //GetById
         User GetById(Guid id);
+        string Create(UserRequestDTO model);
     }
 }

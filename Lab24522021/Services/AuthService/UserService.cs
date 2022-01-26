@@ -14,7 +14,13 @@ namespace Licenta.Services.AuthService
     {
         public Context context;
         public IJWTUtils iJWTUtils; 
-       
+
+        public UserService(Context _context, IJWTUtils _iJWTUtils)
+        {
+            context = _context;
+            iJWTUtils = _iJWTUtils;
+        }
+
         public UserResponseDTO Authentificate(UserRequestDTO model)
         {
             var user = context.Users.FirstOrDefault(x => x.Username == model.Username);
@@ -26,19 +32,43 @@ namespace Licenta.Services.AuthService
             var jwtToken = iJWTUtils.GenerateJWTToken(user);
             return new UserResponseDTO(user, jwtToken);
         }
-        
+
+        public  string Create (UserRequestDTO model)
+        {
+
+            var UserToCreate = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LasttName,
+                Username = model.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
+                Role = Role.User
+            };
+
+            /*var user = context.Users.FirstOrDefault(x => x.Username == model.Username);
+            if (user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))
+            {
+                return true;
+            }*/
+            //JWT generation (Json Web Token)
+            context.Users.Add(UserToCreate);
+            context.SaveChanges();
+            var jwtToken = iJWTUtils.GenerateJWTToken(UserToCreate);
+            return jwtToken;
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
-           // var users = context.Users;
-           // return users;
-           // return
-          throw new NotImplementedException();
+            // var users = context.Users;
+            // return users;
+            // return
+            return context.Users.Where(x => true);
            //return context.Users;
         }
 
         public User GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return context.Users.Where(x =>x.Id==id).FirstOrDefault();
         }
     }
 }
